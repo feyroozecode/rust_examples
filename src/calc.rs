@@ -1,6 +1,6 @@
 use std::io;
 
-
+/// enum for all operations
 enum Operation {
     ADD,
     MINUS,
@@ -8,6 +8,7 @@ enum Operation {
     DIVIDE
 }
 
+/// A package for my calc app
 pub fn calc_app() {
 
     println!("Ahlan wa Sahlan to Zakiy Artihemetics Calculator !");
@@ -22,21 +23,21 @@ pub fn calc_app() {
     println!("4: Division ");
 
     
-    let choice = get_choice();
+    let choice = get_choice();  // get user choice from method 
 
-    // perform operation
-    match choice {
-        1 => perform_calc(Operation::ADD, num1, num2),
-        2 => perform_calc(Operation::MINUS, num1, num2),
-        3 => perform_calc(Operation::MULTIPLY, num1, num2),
-        4 => perform_calc(Operation::DIVIDE, num1, num2),
-        _ => println!("Choix invalide !")
-    }        
+        // perform operation based on choice
+        match choice {
+            1 => perform_calc(Operation::ADD, num1, num2),
+            2 => perform_calc(Operation::MINUS, num1, num2),
+            3 => perform_calc(Operation::MULTIPLY, num1, num2),
+            4 => perform_calc(Operation::DIVIDE, num1, num2),
+            _ => println!("Choix invalide !")
+        }        
     
     }
 
 
-    // get a number 
+    // get a user input 
     fn get_number(prompt: &str) -> f64 {
         loop {
             println!("{}", prompt);
@@ -44,6 +45,7 @@ pub fn calc_app() {
 
             io::stdin().read_line(&mut input).expect("Failed to read line");
 
+            /// validate a number before send it to return of method
             match input.trim().parse::<f64>(){
                 Ok(num) => return num,
                 Err(_)  => println!("Invalid input, enter a valid number"),
@@ -68,6 +70,7 @@ pub fn calc_app() {
     }
 
     /**
+     * Method to Perform a Arithemetic calculation 
      * @param => op: Operation to perform
      * @param => num1: First number to tack
      * @param => num2: Second number to tack
